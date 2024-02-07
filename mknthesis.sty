@@ -1,0 +1,177 @@
+%%
+%% This is file `mknthesis.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% mknthesis.dtx  (with options: `mknthesis,package')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from mknthesis.sty.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file mknthesis.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{mknthesis}[2024-02-07 v0.1.0]
+\setlength{\paperwidth}{210truemm}
+\setlength{\paperheight}{297truemm}
+\usepackage{bxpapersize}
+\setlength{\voffset}{0pt}
+\setlength{\topmargin}{30truemm}        % Top margin: 30 mm
+\addtolength{\topmargin}{-1in}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\hoffset}{0pt}
+\setlength{\oddsidemargin}{30truemm}    % Left margin: 30 mm
+\addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{30truemm}   % Left margin: 30 mm
+\addtolength{\evensidemargin}{-1in}
+\setlength{\footskip}{28pt}         % 28 pt
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-1in}
+\addtolength{\textheight}{-\voffset}
+\addtolength{\textheight}{-\topmargin}
+\addtolength{\textheight}{-\headheight}
+\addtolength{\textheight}{-\headsep}
+\addtolength{\textheight}{-\footskip}
+\addtolength{\textheight}{-25truemm}    % Bottom margin: 25 mm
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-1in}
+\addtolength{\textwidth}{-\hoffset}
+\addtolength{\textwidth}{-\oddsidemargin}
+\addtolength{\textwidth}{-25truemm}     % Right margin: 25 mm
+\setlength{\baselineskip}{0.0285\textheight}  % 0.0285 = 1/35
+\renewcommand{\tiny}{\@setfontsize\tiny{6truebp}{0.057\textheight}}
+\renewcommand{\scriptsize}{\@setfontsize\scriptsize{8truebp}{0.04275\textheight}}
+\renewcommand{\footnotesize}{\@setfontsize\footnotesize{10truebp}{0.0342\textheight}}
+\renewcommand{\small}{\@setfontsize\small{10.95truebp}{0.0312\textheight}}
+\renewcommand{\normalsize}{\@setfontsize\normalsize{12truebp}{0.0285\textheight}}
+\renewcommand{\large}{\@setfontsize\large{14.4truebp}{0.02375\textheight}}
+\renewcommand{\Large}{\@setfontsize\Large{17.28truebp}{0.0198\textheight}}
+\renewcommand{\LARGE}{\@setfontsize\LARGE{20.74truebp}{0.0165\textheight}}
+\renewcommand{\huge}{\@setfontsize\huge{24.88truebp}{0.0137\textheight}}
+\renewcommand{\Huge}{\@setfontsize\Huge{24.88truebp}{0.0137\textheight}}
+\renewcommand{\HUGE}{\@setfontsize\Huge{24.88truebp}{0.0137\textheight}}
+\usepackage[defaultsups]{newtxtext}
+\usepackage{newtxmath}
+\renewcommand{\headfont}{\sffamily\bfseries}
+\setcounter{secnumdepth}{3}
+\renewcommand{\section}{%
+     \cleardoublepage
+     \@startsection{section}{1}{\z@}%
+          {\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+          {.5\Cvs \@plus.3\Cdp}%
+          {\normalsize\headfont\raggedright}}
+\renewcommand{\subsection}{%
+     \@startsection{subsection}{2}{\z@}%
+     {\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+     {.5\Cvs \@plus.3\Cdp}%
+     {\normalsize\headfont}}
+\renewcommand{\subsubsection}{%
+     \@startsection{subsubsection}{3}{\z@}%
+     {\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+     {\if@slide .5\Cvs \@plus.3\Cdp \else \z@ \fi}%
+     {\normalsize\headfont}}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\ps@plain}{\ps@plainfoot}
+\pagestyle{plain}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\@addtoreset{figure}{section}
+\renewcommand{\figurename}{図}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\@addtoreset{table}{section}
+\renewcommand{\tablename}{表}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\@addtoreset{equation}{section}
+\usepackage[superscript]{cite}
+\renewcommand{\citeform}[1]{[#1]}
+\usepackage{bxwareki}
+\global\let\thanks\relax
+\newcommand{\nendo}[1]{\gdef\@nendo{#1}}
+\ifnum\month<4
+     \warekisetdate{\numexpr\year-1}{5}{10}
+\fi
+\nendo{\warekiyear 年度}
+\newcommand{\thesis}[1]{\gdef\@thesis{#1}}
+\thesis{研究論文}
+\newcommand{\school}[1]{\gdef\@school{#1}}
+\school{ほげほげ学校}
+\newcommand{\course}[1]{\gdef\@course{#1}}
+\course{ふがふが課程}
+\newcommand{\major}[1]{\gdef\@major{#1}}
+\major{ぴよぴよ専攻}
+\renewcommand{\maketitle}{%
+     \begin{titlepage}%
+     \cleardoublepage
+     \thispagestyle{empty}%
+     \sffamily
+     \begin{center} \large\@nendo \end{center}
+     \begin{center} \large\@thesis \end{center}
+     \vspace{4\baselineskip}
+     \begin{center} \Huge\@title \end{center}
+     \vspace{13\baselineskip}
+     \begin{center} \large\@school \end{center}
+     \begin{center} \large\@course \end{center}
+     \begin{center} \Large\@major \end{center}
+     \vspace{2\baselineskip}
+     \begin{center} \LARGE
+          \begin{tabular}[t]{c}%
+               \@author
+          \end{tabular}
+     \end{center}
+     \end{titlepage}
+}
+\newcommand{\forgettitle}{%
+     \setcounter{footnote}{0}%
+     \global\let\thanks\relax
+     \global\let\maketitle\relax
+     \global\let\@thanks\@empty
+     \global\let\@author\@empty
+     \global\let\@date\@empty
+     \global\let\@title\@empty
+     \global\let\title\relax
+     \global\let\author\relax
+     \global\let\date\relax
+     \global\let\and\relax
+     \global\let\nendo\relax
+     \global\let\@nendo\relax
+     \global\let\thesis\relax
+     \global\let\@thesis\relax
+     \global\let\school\relax
+     \global\let\@scholol\relax
+     \global\let\course\relax
+     \global\let\@course\relax
+     \global\let\major\relax
+     \global\let\@major\relax
+}
+\newcommand{\図}[1]{\figurename\nobreak\ref{#1}}
+\newcommand{\表}[1]{\tablename\nobreak\ref{#1}}
+\newcommand{\リスト}[1]{\proglistname\nobreak\ref{#1}}
+\newcommand{\式}[1]{式\nobreak\eqref{#1}}
+\newcommand{\第}[2]{第\nobreak#1\nobreak#2}
+\newcommand{\数}[2]{#1\nobreak#2}
+\newcounter{proglist}[section]
+\newcommand{\proglistname}{リスト}
+\renewcommand{\theproglist}{\thesection.\arabic{proglist}}
+\newcommand{\fps@proglist}{bp}
+\newcommand{\ftype@proglist}{4}
+\newcommand{\ext@proglist}{lop}
+\newcommand{\fnum@proglist}{\proglistname\nobreak\theproglist}
+\newenvironment{proglist}%
+     {\@float{proglist}}%
+     {\end@float}
+\newenvironment{proglist*}%
+     {\@dblfloat{proglist}}%
+     {\end@dblfloat}
+\endinput
+%%
+%% End of file `mknthesis.sty'.

@@ -1,0 +1,503 @@
+% \iffalse
+%<package>\NeedsTeXFormat{pLaTeX2e}
+%<package>\ProvidesPackage{mknthesis}[2024-02-07 v0.1.0]
+%<*driver>
+\documentclass[uplatex,dvipdfmx]{jltxdoc}
+
+\usepackage{siunitx}
+\usepackage{hyperref,pxjahyper}
+
+\GetFileInfo{mknthesis.dtx}
+
+\newcommand{\pLaTeXe}{p\LaTeXe}
+
+\title{研究論文用スタイルファイル}
+\author{KusaReMKN}
+
+\begin{document}
+\DocInput{mknthesis.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \maketitle
+%
+% \section{はじめに}
+%
+% \begin{verse}
+%    つくっちゃえばいいんだ全部 大好きなモノで埋めちゃえ
+%    \vspace{-.5\baselineskip}
+%    \begin{flushright}--- 結束バンド\end{flushright}
+% \end{verse}
+%
+% \file{mknthesis}パッケージは
+% 某大学校の大学院修士課程相当の課程における
+% 研究論文の書式を設定する\pLaTeXe スタイルファイルです。
+% このパッケージで設定される書式は
+% 各種文書に指定されているものに準拠していると思われますが、
+% \emph{保証はありません}。
+%
+% 本文書では、
+% \file{mknthesis}パッケージで設定される書式や
+% 定義されるマクロについて説明しています。
+%
+% 第\nobreak\ref{sec:基本的な書式}\hspace{\xkanjiskip}章では、
+% 基本的な書式を設定します。
+% 具体的には以下の項目を設定します。
+%
+% \begin{itemize}
+%    \setlength{\itemsep}{0pt}
+%    \setlength{\parskip}{0pt}
+%    \item 用紙サイズ
+%    \item 余白、ヘッダ・フッタの位置
+%    \item 1\nobreak ページあたりの行数
+%    \item 文字サイズ
+%    \item 欧文フォント、数式フォント
+%    \item 見出しのフォント
+%    \item ノンブルの位置
+%    \item 図・表・式番号
+%    \item 参考文献の文献番号
+% \end{itemize}
+%
+% 第\nobreak\ref{sec:表紙の書式}\hspace{\xkanjiskip}章では、
+% 表紙に表示される項目を設定するためのマクロを定義し、
+% 表紙の書式を設定します。
+%
+% 第\nobreak\ref{sec:雑多なマクロ}\hspace{\xkanjiskip}章では、
+% 論文執筆をより便利にするためのマクロを定義します。
+%
+% \file{mknthesis}パッケージはMIT Licenseの下で提供されます。
+% つまり、このパッケージは\emph{現状のまま}で、
+% 明示であるか暗黙であるかを問わず、
+% \emph{何らの保証もなく}提供されます。
+% MIT Licenseの条文については、
+% 同梱されている\file{LICENSE}ファイルを参照してください。
+%
+% \StopEventually{}
+%
+% \section{基本的な書式}
+% \label{sec:基本的な書式}
+%
+%    \begin{macrocode}
+%<*mknthesis>
+%    \end{macrocode}
+%
+% 用紙サイズをA4縦置きに固定します。
+% A4サイズは\qtyproduct{210x297}{mm}とします。
+% また、\file{dvipdfmx}を利用してPDFを出力する場合にも
+% 正しい用紙サイズとなるよう、
+% \file{bxpapersize}パッケージを読み込みます。
+%
+% この設定はクラスオプションよりも優先されます。
+% しかし、クラスオプションで別の用紙サイズが指定された場合、
+% クラスファイルによって用紙サイズ以外の項目が変更される恐れがあり、
+% 見栄えに影響を及ぼすかもしれません。
+%
+%    \begin{macrocode}
+%<*package>
+\setlength{\paperwidth}{210truemm}
+\setlength{\paperheight}{297truemm}
+\usepackage{bxpapersize}
+%</package>
+%    \end{macrocode}
+%
+% 余白サイズやヘッダ・フッタの位置などを設定します。
+% 余白は上部と左側をそれぞれ\qty{30}{mm}、
+% 下部と右側をそれぞれ\qty{25}{mm}に設定します。
+% ヘッダに配置されるものは何も無いはずですから、
+% ヘッダの高さは潰しておきます。
+% フッタにはノンブルが配置されますから、
+% 適当な位置（版面から\qty{28}{pt}）になるように再設定してあります。
+% フッタの位置は特に指定されているものではありません。
+%
+%    \begin{macrocode}
+%<*package>
+\setlength{\voffset}{0pt}
+\setlength{\topmargin}{30truemm}        % Top margin: 30 mm
+\addtolength{\topmargin}{-1in}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\hoffset}{0pt}
+\setlength{\oddsidemargin}{30truemm}    % Left margin: 30 mm
+\addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{30truemm}   % Left margin: 30 mm
+\addtolength{\evensidemargin}{-1in}
+\setlength{\footskip}{28pt}         % 28 pt
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-1in}
+\addtolength{\textheight}{-\voffset}
+\addtolength{\textheight}{-\topmargin}
+\addtolength{\textheight}{-\headheight}
+\addtolength{\textheight}{-\headsep}
+\addtolength{\textheight}{-\footskip}
+\addtolength{\textheight}{-25truemm}    % Bottom margin: 25 mm
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-1in}
+\addtolength{\textwidth}{-\hoffset}
+\addtolength{\textwidth}{-\oddsidemargin}
+\addtolength{\textwidth}{-25truemm}     % Right margin: 25 mm
+%</package>
+%    \end{macrocode}
+%
+% 1\nobreak ページあたりの行数を設定するために行送りを設定します。
+% 行送りを版面の高さの0.0285\nobreak 倍に設定すると
+% $0.0285^{-1} \approx 35.0877 \approx 35$となりますから、
+% だいたい35\nobreak 行入ることになります。
+%
+%    \begin{macrocode}
+%<*package>
+\setlength{\baselineskip}{0.0285\textheight}  % 0.0285 = 1/35
+%</package>
+%    \end{macrocode}
+%
+% 文字サイズを設定します。
+% 基本となる文字サイズは\qty{12}{pt}です。
+%
+%    \begin{macrocode}
+%<*package>
+\renewcommand{\tiny}{\@setfontsize\tiny{6truebp}{0.057\textheight}}
+\renewcommand{\scriptsize}{\@setfontsize\scriptsize{8truebp}{0.04275\textheight}}
+\renewcommand{\footnotesize}{\@setfontsize\footnotesize{10truebp}{0.0342\textheight}}
+\renewcommand{\small}{\@setfontsize\small{10.95truebp}{0.0312\textheight}}
+\renewcommand{\normalsize}{\@setfontsize\normalsize{12truebp}{0.0285\textheight}}
+\renewcommand{\large}{\@setfontsize\large{14.4truebp}{0.02375\textheight}}
+\renewcommand{\Large}{\@setfontsize\Large{17.28truebp}{0.0198\textheight}}
+\renewcommand{\LARGE}{\@setfontsize\LARGE{20.74truebp}{0.0165\textheight}}
+\renewcommand{\huge}{\@setfontsize\huge{24.88truebp}{0.0137\textheight}}
+\renewcommand{\Huge}{\@setfontsize\Huge{24.88truebp}{0.0137\textheight}}
+\renewcommand{\HUGE}{\@setfontsize\Huge{24.88truebp}{0.0137\textheight}}
+%</package>
+%    \end{macrocode}
+%
+% 欧文フォントと数式フォントを設定します。
+% Times系のフォントであるTXフォントの新版を利用します。
+% \file{newtxtext}パッケージと\file{newtxmath}パッケージを読み込みます。
+%
+%    \begin{macrocode}
+%<*package>
+\usepackage[defaultsups]{newtxtext}
+\usepackage{newtxmath}
+%</package>
+%    \end{macrocode}
+%
+% 見出しの書式を設定します。
+% 見出しのフォントにはゴシック体の太字を利用します。
+% 章番号が小見出し（subsubsection）まで表示されるようにします。
+% また、章（section）の始めは右ページになるように改ページします。
+% パラグラフ（paragraph）以下の書式を変更していません。
+% （この部分は\file{jsclasses}の設定を参考にしています。）
+%
+%    \begin{macrocode}
+%<*package>
+\renewcommand{\headfont}{\sffamily\bfseries}
+\setcounter{secnumdepth}{3}
+\renewcommand{\section}{%
+     \cleardoublepage
+     \@startsection{section}{1}{\z@}%
+          {\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+          {.5\Cvs \@plus.3\Cdp}%
+          {\normalsize\headfont\raggedright}}
+\renewcommand{\subsection}{%
+     \@startsection{subsection}{2}{\z@}%
+     {\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+     {.5\Cvs \@plus.3\Cdp}%
+     {\normalsize\headfont}}
+\renewcommand{\subsubsection}{%
+     \@startsection{subsubsection}{3}{\z@}%
+     {\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+     {\if@slide .5\Cvs \@plus.3\Cdp \else \z@ \fi}%
+     {\normalsize\headfont}}
+\renewcommand{\thesection}{\arabic{section}}
+%</package>
+%    \end{macrocode}
+%
+% ノンブル（ページ番号）を設定します。
+% ノンブルをフッタ中央に表示することを強制します。
+%
+%    \begin{macrocode}
+%<*package>
+\renewcommand{\ps@plain}{\ps@plainfoot}
+\pagestyle{plain}
+%</package>
+%    \end{macrocode}
+%
+% 図・表・式の番号を設定します。
+% 番号は章（section）毎にリセットされ、
+% 章番号と各番号を用いて1.1や3.14のような形式で表示されます。
+% また、図の名前を「図」に、
+% 表の名前を「表」に設定します。
+%
+%    \begin{macrocode}
+%<*package>
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\@addtoreset{figure}{section}
+\renewcommand{\figurename}{図}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\@addtoreset{table}{section}
+\renewcommand{\tablename}{表}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\@addtoreset{equation}{section}
+%</package>
+%    \end{macrocode}
+%
+% 参考文献の文献番号を設定します。
+% 文献番号は角括弧で囲われ、上付きで表示します。
+% \file{cite}パッケージを読み込みます。
+%
+%    \begin{macrocode}
+%<*package>
+\usepackage[superscript]{cite}
+\renewcommand{\citeform}[1]{[#1]}
+%</package>
+%    \end{macrocode}
+%
+% \section{表紙の書式}
+% \label{sec:表紙の書式}
+%
+% 表紙には、以下の項目が表示されます。
+%
+% \begin{itemize}
+%    \setlength{\itemsep}{0pt}
+%    \setlength{\parskip}{0pt}
+%    \item 年度
+%    \item 論文の種類
+%    \item 論文題目
+%    \item 学校名
+%    \item 課程名
+%    \item 専攻名
+%    \item 著者名
+% \end{itemize}
+%
+% 和暦を簡単に扱うために\file{bxwareki}パッケージを読み込みます。
+%
+%    \begin{macrocode}
+%<*package>
+\usepackage{bxwareki}
+%</package>
+%    \end{macrocode}
+%
+% \begin{macro}{\thanks}
+% 所属を表示するための\verb|\thanks|は使われませんから、無効化します。
+% XXX: これは間違いなく開発者の怠慢です。
+% 適切にサポートされるべきです。
+%
+%    \begin{macrocode}
+%<*package>
+\global\let\thanks\relax
+%</package>
+%    \end{macrocode}
+%
+% \end{macro}
+%
+% \begin{macro}{\nendo}
+% 表紙に表示される年度を指定します。
+% 引数に指定された文字列がそのまま利用されます。
+% デフォルトでは、
+% 文書をコンパイルした時刻に応じて自動的に和暦の年度を設定します。
+%
+%    \begin{macrocode}
+%<*package>
+\newcommand{\nendo}[1]{\gdef\@nendo{#1}}
+\ifnum\month<4
+     \warekisetdate{\numexpr\year-1}{5}{10}
+\fi
+\nendo{\warekiyear 年度}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thesis}
+% 表紙に表示される論文の種類を指定します。
+% 引数に指定された文字列がそのまま利用されます。
+% デフォルトでは、「研究論文」を設定します。
+%
+%    \begin{macrocode}
+%<*package>
+\newcommand{\thesis}[1]{\gdef\@thesis{#1}}
+\thesis{研究論文}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\school}
+% 表紙に表示される学校名を指定します。
+% 引数に指定された文字列がそのまま利用されます。
+% デフォルトでは、「ほげほげ学校」を設定します。
+%
+%    \begin{macrocode}
+%<*package>
+\newcommand{\school}[1]{\gdef\@school{#1}}
+\school{ほげほげ学校}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\course}
+% 表紙に表示される課程名を指定します。
+% 引数に指定された文字列がそのまま利用されます。
+% デフォルトでは、「ふがふが課程」を設定します。
+%
+%    \begin{macrocode}
+%<*package>
+\newcommand{\course}[1]{\gdef\@course{#1}}
+\course{ふがふが課程}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\major}
+% 表紙に表示される専攻名を指定します。
+% 引数に指定された文字列がそのまま利用されます。
+% デフォルトでは、「ぴよぴよ専攻」を設定します。
+%
+%    \begin{macrocode}
+%<*package>
+\newcommand{\major}[1]{\gdef\@major{#1}}
+\major{ぴよぴよ専攻}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\maketitle}
+% 表紙を出力します。
+% 表紙を出力したあとでも|\maketitle|は効力を失いません。
+%
+%    \begin{macrocode}
+%<*package>
+\renewcommand{\maketitle}{%
+     \begin{titlepage}%
+     \cleardoublepage
+     \thispagestyle{empty}%
+     \sffamily
+     \begin{center} \large\@nendo \end{center}
+     \begin{center} \large\@thesis \end{center}
+     \vspace{4\baselineskip}
+     \begin{center} \Huge\@title \end{center}
+     \vspace{13\baselineskip}
+     \begin{center} \large\@school \end{center}
+     \begin{center} \large\@course \end{center}
+     \begin{center} \Large\@major \end{center}
+     \vspace{2\baselineskip}
+     \begin{center} \LARGE
+          \begin{tabular}[t]{c}%
+               \@author
+          \end{tabular}
+     \end{center}
+     \end{titlepage}
+}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\forgettitle}
+% |\maketitle|やその周辺の各種マクロを無効化します。
+% \file{jsclasses}では
+% |\maketitle|の最後で各種マクロが無効化されますが、
+% \file{mknthesis}では
+% 中表紙で|\maketitle|を再利用するために無効化されていません。
+%
+%    \begin{macrocode}
+%<*package>
+\newcommand{\forgettitle}{%
+     \setcounter{footnote}{0}%
+     \global\let\thanks\relax
+     \global\let\maketitle\relax
+     \global\let\@thanks\@empty
+     \global\let\@author\@empty
+     \global\let\@date\@empty
+     \global\let\@title\@empty
+     \global\let\title\relax
+     \global\let\author\relax
+     \global\let\date\relax
+     \global\let\and\relax
+     \global\let\nendo\relax
+     \global\let\@nendo\relax
+     \global\let\thesis\relax
+     \global\let\@thesis\relax
+     \global\let\school\relax
+     \global\let\@scholol\relax
+     \global\let\course\relax
+     \global\let\@course\relax
+     \global\let\major\relax
+     \global\let\@major\relax
+}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \section{雑多なマクロ}
+% \label{sec:雑多なマクロ}
+%
+% \begin{macro}{\図,\表,\リスト,\式}
+% 図や表、式を参照する場合には
+% |\figurename\nobreak\ref{fig:foo}|のように記述する必要がありますが、
+% これを毎回入力することは煩雑で仕方がないので楽に記述できるようにします。
+% 引数にはラベル名を指定します。
+% 例えば、|\図{fig:foo}|のように使います。
+%
+%    \begin{macrocode}
+%<*package>
+\newcommand{\図}[1]{\figurename\nobreak\ref{#1}}
+\newcommand{\表}[1]{\tablename\nobreak\ref{#1}}
+\newcommand{\リスト}[1]{\proglistname\nobreak\ref{#1}}
+\newcommand{\式}[1]{式\nobreak\eqref{#1}}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\第}
+% 第\nobreak 1\nobreak 章や第\nobreak 3\nobreak 位のような
+% 算用数字を用いた序数詞を記述するときに、
+% 第と数字の間、そして数字と単位の間で改行しないようにします。
+% 例えば、|\第{1}{章}|のように使います。
+%
+%    \begin{macrocode}
+%<*package>
+\newcommand{\第}[2]{第\nobreak#1\nobreak#2}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\num}
+% 1\nobreak ページや3\nobreak 倍といった
+% 算用数字を用いた数詞を記述するときに、
+% 数字と単位の間で改行しないようにします。
+% 例えば、|\数{1}{ページ}|のように使います。
+%
+%    \begin{macrocode}
+%<*package>
+\newcommand{\数}[2]{#1\nobreak#2}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{proglist}
+% プログラムリストを表示するための環境です。
+% \file{jsclasses}の\texttt{figure}環境などを参考にしています。
+%
+%    \begin{macrocode}
+%<*package>
+\newcounter{proglist}[section]
+\newcommand{\proglistname}{リスト}
+\renewcommand{\theproglist}{\thesection.\arabic{proglist}}
+\newcommand{\fps@proglist}{bp}
+\newcommand{\ftype@proglist}{4}
+\newcommand{\ext@proglist}{lop}
+\newcommand{\fnum@proglist}{\proglistname\nobreak\theproglist}
+\newenvironment{proglist}%
+     {\@float{proglist}}%
+     {\end@float}
+\newenvironment{proglist*}%
+     {\@dblfloat{proglist}}%
+     {\end@dblfloat}
+%</package>
+%    \end{macrocode}
+% \end{environment}
+%
+%    \begin{macrocode}
+%</mknthesis>
+%    \end{macrocode}
+%
+% 以上です。
+%
+% \Finale
