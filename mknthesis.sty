@@ -21,7 +21,7 @@
 %% same distribution. (The sources need not necessarily be
 %% in the same archive or directory.)
 \NeedsTeXFormat{pLaTeX2e}
-\ProvidesPackage{mknthesis}[2024-02-07 v0.1.3]
+\ProvidesPackage{mknthesis}[2024-02-07 v0.1.4]
 \setlength{\paperwidth}{210truemm}
 \setlength{\paperheight}{297truemm}
 \usepackage{bxpapersize}
@@ -106,7 +106,6 @@
 \newcommand{\school}[1]{\gdef\@school{#1}}
 \school{ほげほげ学校}
 \newcommand{\course}[1]{\gdef\@course{#1}}
-\course{ふがふが課程}
 \newcommand{\major}[1]{\gdef\@major{#1}}
 \major{ぴよぴよ専攻}
 \newcommand{\supervisor}[2][指導教員]{%
@@ -123,7 +122,9 @@
      \begin{center} \Huge\@title \end{center}
      \vfill
      \begin{center} \large\@school \end{center}
-     \begin{center} \large\@course \end{center}
+     \@ifundefined{@course}{}{%
+          \begin{center} \large\@course \end{center}
+     }
      \begin{center} \Large\@major \end{center}
      \vspace{2\baselineskip}
      \begin{center} \LARGE
