@@ -1,6 +1,6 @@
 % \iffalse
 %<package>\NeedsTeXFormat{pLaTeX2e}
-%<package>\ProvidesPackage{mknthesis}[2024-02-07 v0.1.0]
+%<package>\ProvidesPackage{mknthesis}[2024-02-07 v0.1.1]
 %<*driver>
 \documentclass[uplatex,dvipdfmx]{jltxdoc}
 
@@ -362,6 +362,10 @@
 % 表紙を出力します。
 % 表紙を出力したあとでも|\maketitle|は効力を失いません。
 %
+% [2024-02-09]
+% 表紙に指定されている書式を少しだけ無視し、
+% 名前の下端が版面の下と合うようにしました。
+%
 %    \begin{macrocode}
 %<*package>
 \renewcommand{\maketitle}{%
@@ -373,7 +377,7 @@
      \begin{center} \large\@thesis \end{center}
      \vspace{4\baselineskip}
      \begin{center} \Huge\@title \end{center}
-     \vspace{13\baselineskip}
+     \vfill
      \begin{center} \large\@school \end{center}
      \begin{center} \large\@course \end{center}
      \begin{center} \Large\@major \end{center}
