@@ -21,7 +21,7 @@
 %% same distribution. (The sources need not necessarily be
 %% in the same archive or directory.)
 \NeedsTeXFormat{pLaTeX2e}
-\ProvidesPackage{mknthesis}[2024-02-07 v0.1.2]
+\ProvidesPackage{mknthesis}[2024-02-07 v0.1.3]
 \setlength{\paperwidth}{210truemm}
 \setlength{\paperheight}{297truemm}
 \usepackage{bxpapersize}
@@ -109,6 +109,9 @@
 \course{ふがふが課程}
 \newcommand{\major}[1]{\gdef\@major{#1}}
 \major{ぴよぴよ専攻}
+\newcommand{\supervisor}[2][指導教員]{%
+     \gdef\@指導教員{#1}
+     \gdef\@supervisor{#2}}
 \renewcommand{\maketitle}{%
      \begin{titlepage}%
      \cleardoublepage
@@ -128,6 +131,14 @@
                \@author
           \end{tabular}
      \end{center}
+     \@ifundefined{@supervisor}{}{%
+          \vspace{2\baselineskip}
+          \begin{center} \large\@指導教員 \end{center}
+          \begin{center} \Large
+               \begin{tabular}[t]{c}%
+                    \@supervisor
+               \end{tabular}
+          \end{center}}
      \end{titlepage}
 }
 \newcommand{\forgettitle}{%
@@ -152,6 +163,8 @@
      \global\let\@course\relax
      \global\let\major\relax
      \global\let\@major\relax
+     \global\let\@指導教員\relax
+     \global\let\@supervisor\relax
 }
 \newcommand{\図}[1]{\figurename\nobreak\ref{#1}}
 \newcommand{\表}[1]{\tablename\nobreak\ref{#1}}
