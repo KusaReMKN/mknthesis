@@ -1,6 +1,6 @@
 % \iffalse
 %<package>\NeedsTeXFormat{pLaTeX2e}
-%<package>\ProvidesPackage{mknthesis}[2024-02-07 v0.1.4]
+%<package>\ProvidesPackage{mknthesis}[2024-02-07 v0.2.0]
 %<*driver>
 \documentclass[uplatex,dvipdfmx]{jltxdoc}
 
@@ -240,16 +240,23 @@
 %</package>
 %    \end{macrocode}
 %
+% \begin{macro}{\文献}
 % 参考文献の文献番号を設定します。
-% 文献番号は角括弧で囲われ、上付きで表示します。
 % \file{cite}パッケージを読み込みます。
+%
+% [2024-02-12]
+% 以前は「文献~[1] より」のように表示する際にも上付きになっていました。
+% これは意図しない動作ですから、次のように修正されました。
+% |\cite|は通常と同様になります（上付きになりません）。
+% |\文献|とすることで上付きになります。
 %
 %    \begin{macrocode}
 %<*package>
-\usepackage[superscript]{cite}
-\renewcommand{\citeform}[1]{[#1]}
+\usepackage{cite}
+\newcommand{\文献}[1]{\!\textsuperscript{\cite{#1}}}
 %</package>
 %    \end{macrocode}
+% \end{macro}
 %
 % \section{表紙の書式}
 % \label{sec:表紙の書式}
