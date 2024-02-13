@@ -1,6 +1,6 @@
 % \iffalse
 %<package>\NeedsTeXFormat{pLaTeX2e}
-%<package>\ProvidesPackage{mknthesis}[2024-02-07 v0.2.1]
+%<package>\ProvidesPackage{mknthesis}[2024-02-07 v0.2.2]
 %<*driver>
 \documentclass[uplatex,dvipdfmx]{jltxdoc}
 
@@ -211,6 +211,15 @@
      {\if@slide .5\Cvs \@plus.3\Cdp \else \z@ \fi}%
      {\normalsize\headfont}}
 \renewcommand{\thesection}{\arabic{section}}
+%</package>
+%    \end{macrocode}
+%
+% [2024-02-13]
+% 目次に小見出しまで出力するようにします。
+%
+%    \begin{macrocode}
+%<*package>
+\setcounter{secnumdepth}{3}
 %</package>
 %    \end{macrocode}
 %

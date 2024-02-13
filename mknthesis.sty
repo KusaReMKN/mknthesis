@@ -21,7 +21,7 @@
 %% same distribution. (The sources need not necessarily be
 %% in the same archive or directory.)
 \NeedsTeXFormat{pLaTeX2e}
-\ProvidesPackage{mknthesis}[2024-02-07 v0.2.1]
+\ProvidesPackage{mknthesis}[2024-02-07 v0.2.2]
 \setlength{\paperwidth}{210truemm}
 \setlength{\paperheight}{297truemm}
 \usepackage{bxpapersize}
@@ -82,6 +82,7 @@
      {\if@slide .5\Cvs \@plus.3\Cdp \else \z@ \fi}%
      {\normalsize\headfont}}
 \renewcommand{\thesection}{\arabic{section}}
+\setcounter{secnumdepth}{3}
 \renewcommand{\ps@plain}{\ps@plainfoot}
 \pagestyle{plain}
 \renewcommand{\thefigure}{\thesection.\arabic{figure}}
